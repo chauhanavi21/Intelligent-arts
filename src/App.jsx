@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import Authors from './pages/Authors';
+import Books from './pages/Books';
 import Archives from './pages/Archives';
 import Contact from './pages/Contact';
 import Footer from './components/Footer'
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/authors" element={<Authors />} />
+          <Route path="/books" element={<Books />} />
           <Route path="/archives" element={<Archives />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

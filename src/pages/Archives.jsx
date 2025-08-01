@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Archives = () => {
   return (
     <div className="p-10 text-center text-xl">
