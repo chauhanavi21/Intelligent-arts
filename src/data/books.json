@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "title": "A Death in Zamora",
+    "author": "Ramón Sender Barayón",
+    "image": "/image2.webp"
+  },
+  {
+    "id": "2",
+    "title": "It's About Sound",
+    "author": "Joel Chadabe",
+    "image": "/image3.webp"
+  },
+  {
+    "id": "3",
+    "title": "The Musical World of Paul Winter",
+    "author": "Bob Gluck",
+    "image": "/image4.webp"
+  },
+  {
+    "id": "4",
+    "title": "John Cage's Greatest Hits",
+    "author": "Richard Kostelanetz",
+    "image": "/image5.webp"
+  },
+  {
+    "id": "5",
+    "title": "Naked Close-Up",
+    "author": "Sender Barayón",
+    "image": "/image6.webp"
+  },
+  {
+    "id": "6",
+    "title": "Arts Sciences Alloys",
+    "author": "Iannis Xenakis",
+    "image": "/image7.webp"
+  },
+  {
+    "id": "7",
+    "title": "Here and Now",
+    "author": "Vanessa Tomlinson and Toby Wren",
+    "image": "/image8.webp"
+  },
+  {
+    "id": "8",
+    "title": "On Innovative Musicians",
+    "author": "Richard Kostelanetz",
+    "image": "/image9.webp"
+  },
+  {
+    "id": "9",
+    "title": "Words by Memory",
+    "author": "Jalalu-Kalvert Nelson",
+    "image": "/image9.jpg"
+  },
+  {
+    "id": "10",
+    "title": "Compose Your Words",
+    "author": "Leigh Landy",
+    "image": "/image10.jpg"
+  },
+  {
+    "id": "11",
+    "title": "Mind Pieces",
+    "author": "Eduardo Reck Miranda",
+    "image": "/image11.jpg"
+  },
+  {
+    "id": "12",
+    "title": "Text-Sound",
+    "author": "Richard Kostelanetz",
+    "image": "/image12.jpg"
+  }
+]
