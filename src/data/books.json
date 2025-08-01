@@ -3,72 +3,84 @@
     "id": "1",
     "title": "A Death in Zamora",
     "author": "Ramón Sender Barayón",
-    "image": "/image2.webp"
+    "image": "/image2.webp",
+    "description": "A gripping story that takes place during the Spanish Civil War through the lens of personal discovery, truth, and hidden family history."
   },
   {
     "id": "2",
     "title": "It's About Sound",
     "author": "Joel Chadabe",
-    "image": "/image3.webp"
+    "image": "/image3.webp",
+    "description": "This book explores music’s role in daily life — sing, play, listen. It's about how sound connects us all through emotion and memory."
   },
   {
     "id": "3",
     "title": "The Musical World of Paul Winter",
     "author": "Bob Gluck",
-    "image": "/image4.webp"
+    "image": "/image4.webp",
+    "description": "Environment and music meet. From the Grand Canyon to New York, Paul Winter’s sonic journey blends culture and conservation."
   },
   {
     "id": "4",
     "title": "John Cage's Greatest Hits",
     "author": "Richard Kostelanetz",
-    "image": "/image5.webp"
+    "image": "/image5.webp",
+    "description": "A celebration of John Cage — revolutionary composer, thinker, and sound adventurer. A bold reimagining of what music can mean."
   },
   {
     "id": "5",
     "title": "Naked Close-Up",
-    "author": "Sender Barayón",
-    "image": "/image6.webp"
+    "author": "Ramón Sender Barayón",
+    "image": "/image6.webp",
+    "description": "An insider’s view of the San Francisco ’60s music and art scene. Colorful, raw, unforgettable — once in a lifetime moments."
   },
   {
     "id": "6",
     "title": "Arts Sciences Alloys",
     "author": "Iannis Xenakis",
-    "image": "/image7.webp"
+    "image": "/image7.webp",
+    "description": "A deep dive into Xenakis’s thesis — where science meets sound. A fusion of math, architecture, and music unlike any other."
   },
   {
     "id": "7",
     "title": "Here and Now",
     "author": "Vanessa Tomlinson and Toby Wren",
-    "image": "/image8.webp"
+    "image": "/image7.jpg",
+    "description": "Artistic research and performance come together. A fresh take on new music, collaboration, and reflective creative practice."
   },
   {
     "id": "8",
     "title": "On Innovative Musicians",
     "author": "Richard Kostelanetz",
-    "image": "/image9.webp"
+    "image": "/image8.jpg",
+    "description": "Interviews and essays on groundbreaking artists — their voices, their tools, their revolutions in sound and method."
   },
   {
     "id": "9",
     "title": "Words by Memory",
     "author": "Jalalu-Kalvert Nelson",
-    "image": "/image9.jpg"
+    "image": "/image9.jpg",
+    "description": "Poems and reflections from a master of both words and music. Deeply personal, wildly creative, and profoundly musical."
   },
   {
     "id": "10",
     "title": "Compose Your Words",
     "author": "Leigh Landy",
-    "image": "/image10.jpg"
+    "image": "/image10.jpg",
+    "description": "Our voice is the ultimate instrument. This book explores how we use sound, text, and tone to shape meaning and connection."
   },
   {
     "id": "11",
     "title": "Mind Pieces",
     "author": "Eduardo Reck Miranda",
-    "image": "/image11.jpg"
+    "image": "/image11.jpg",
+    "description": "A glimpse into the future of music technology. This book examines computers, AI, and how they’re reshaping composition and sound."
   },
   {
     "id": "12",
     "title": "Text-Sound",
     "author": "Richard Kostelanetz",
-    "image": "/image12.jpg"
+    "image": "/image12.jpg",
+    "description": "Vocal art and poetry in motion. A study of sound-text and the creative blend of word and music in new media."
   }
 ]
