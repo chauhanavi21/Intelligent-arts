@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import Books from './pages/Books';
 import Archives from './pages/Archives';
 import Contact from './pages/Contact';
+import Authors from './pages/Authors';
 import Footer from './components/Footer'
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
           <Route path="/books" element={<Books />} />
           <Route path="/archives" element={<Archives />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/authors" element={<Authors />} />
+          <Route path="/authors/:authorId" element={<Authors />} />
         </Routes>
       </main>
       <Footer />

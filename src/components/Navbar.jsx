@@ -22,6 +22,7 @@ const Navbar = () => {
 
       <div className="flex gap-6 text-sm md:text-base font-medium">
         <Link to="/" onClick={(e) => scrollToTop(e, '/')}>Home</Link>
+        <Link to="/authors" onClick={(e) => scrollToTop(e, '/authors')}>Authors</Link>
         <Link to="/books" onClick={(e) => scrollToTop(e, '/books')}>Books</Link>
         <Link to="/archives" onClick={(e) => scrollToTop(e, '/archives')}>Archives</Link>
         <Link to="/contact" onClick={(e) => scrollToTop(e, '/contact')}>Contact Us</Link>
