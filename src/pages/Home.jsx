@@ -1,44 +1,56 @@
 import HeroCarousel from '../components/HeroCarousel';
-import books from '../data/books.json';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const categories = [
+    {
+      title: 'Authors',
+      description: 'Discover the brilliant minds behind our publications',
+      icon: '👥',
+      link: '/authors'
+    },
+    {
+      title: 'Books',
+      description: 'Explore our collection of music and arts literature',
+      icon: '📚',
+      link: '/books'
+    },
+    {
+      title: 'Archives',
+      description: 'Dive into our historical collections and rare materials',
+      icon: '📁',
+      link: '/archives'
+    },
+    {
+      title: 'More Coming Soon',
+      description: 'Stay tuned for new categories and exciting content',
+      icon: '🚀',
+      link: '#'
+    }
+  ];
+
   return (
     <div className="pt-6">
       <HeroCarousel />
 
       <div className="mt-10 px-4 sm:px-[30px] max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl sm:text-3xl font-semibold" style={{ fontFamily: 'Lato, sans-serif' }}>
-            List of Books
-          </h2>
-          <Link to="/books" className="text-blue-600 hover:underline text-sm sm:text-base">
-            View all books →
-          </Link>
-        </div>
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-8 text-center" style={{ fontFamily: 'Lato, sans-serif' }}>
+          Navigate intelligent arts.
+        </h2>
 
-        <div className="grid gap-x-6 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-          {books.slice(0, 8).map((book) => (
-            <div
-              key={book.id}
-              className="bg-white shadow-md hover:shadow-lg transition rounded-md overflow-hidden cursor-pointer"
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {categories.map((category, index) => (
+            <Link
+              key={index}
+              to={category.link}
+              className="block bg-white shadow-md hover:shadow-lg transition-all duration-300 rounded-md overflow-hidden cursor-pointer transform hover:-translate-y-1"
             >
-              <img
-                src={book.image}
-                alt={book.title}
-                className="w-full h-[300px] object-contain rounded-t-md"
-              />
-              <div className="p-3">
-                <h3 className="font-semibold text-lg">{book.title}</h3>
-                <p className="text-sm text-gray-600">{book.author}</p>
-                <p className="text-sm mt-2 text-gray-700">
-                  {book.description?.slice(0, 90)}...{' '}
-                  <Link to={`/profile/${book.id}`} className="text-blue-600 hover:underline">
-                    Read more
-                  </Link>
-                </p>
+              <div className="p-6 text-center">
+                <div className="text-4xl mb-4">{category.icon}</div>
+                <h3 className="font-semibold text-lg mb-2">{category.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{category.description}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
