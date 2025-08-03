@@ -101,15 +101,6 @@ const Authors = () => {
         {/* Author Section */}
         <div className="mb-12">
           <div className="flex flex-col md:flex-row gap-8 items-start">
-            {/* Author Image */}
-            <div className="w-full md:w-1/3">
-              <img
-                src={author.image}
-                alt={author.name}
-                className="w-full max-w-md mx-auto rounded-lg shadow-md object-cover"
-              />
-            </div>
-            
             {/* Author Intro */}
             <div className="w-full md:w-2/3">
               <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Lato, sans-serif' }}>
@@ -121,6 +112,15 @@ const Authors = () => {
               <p className="text-gray-600 leading-relaxed">
                 {author.bio}
               </p>
+            </div>
+            
+            {/* Author Image */}
+            <div className="w-full md:w-1/3">
+              <img
+                src={author.image}
+                alt={author.name}
+                className="w-full max-w-md mx-auto rounded-lg shadow-md object-cover"
+              />
             </div>
           </div>
         </div>
