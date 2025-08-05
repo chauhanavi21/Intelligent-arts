@@ -2,112 +2,112 @@
   {
     "id": "1",
     "title": "A Death in Zamora",
-    "author": "Ramón Sender Barayón",
+    "authorId": "2",
     "image": "/image2.webp",
     "description": "A gripping story that takes place during the Spanish Civil War through the lens of personal discovery, truth, and hidden family history."
   },
   {
     "id": "2",
     "title": "It's About Sound",
-    "author": "Joel Chadabe",
+    "authorId": "1",
     "image": "/image3.webp",
-    "description": "This book explores music’s role in daily life — sing, play, listen. It's about how sound connects us all through emotion and memory."
+    "description": "This book explores music's role in daily life — sing, play, listen. It's about how sound connects us all through emotion and memory."
   },
   {
     "id": "3",
     "title": "The Musical World of Paul Winter",
-    "author": "Bob Gluck",
+    "authorId": "4",
     "image": "/image4.webp",
-    "description": "Environment and music meet. From the Grand Canyon to New York, Paul Winter’s sonic journey blends culture and conservation."
+    "description": "Environment and music meet. From the Grand Canyon to New York, Paul Winter's sonic journey blends culture and conservation."
   },
   {
     "id": "4",
     "title": "John Cage's Greatest Hits",
-    "author": "Richard Kostelanetz",
+    "authorId": "3",
     "image": "/image5.webp",
     "description": "A celebration of John Cage — revolutionary composer, thinker, and sound adventurer. A bold reimagining of what music can mean."
   },
   {
     "id": "5",
     "title": "Naked Close-Up",
-    "author": "Ramón Sender Barayón",
+    "authorId": "2",
     "image": "/image6.webp",
-    "description": "An insider’s view of the San Francisco ’60s music and art scene. Colorful, raw, unforgettable — once in a lifetime moments."
+    "description": "An insider's view of the San Francisco '60s music and art scene. Colorful, raw, unforgettable — once in a lifetime moments."
   },
   {
     "id": "6",
     "title": "Arts Sciences Alloys",
-    "author": "Iannis Xenakis",
+    "authorId": "3",
     "image": "/image7.webp",
-    "description": "A deep dive into Xenakis’s thesis — where science meets sound. A fusion of math, architecture, and music unlike any other."
+    "description": "A deep dive into Xenakis's thesis — where science meets sound. A fusion of math, architecture, and music unlike any other."
   },
   {
     "id": "7",
     "title": "Here and Now",
-    "author": "Vanessa Tomlinson and Toby Wren",
+    "authorId": "5",
     "image": "/image8.webp",
     "description": "Artistic research and performance come together. A fresh take on new music, collaboration, and reflective creative practice."
   },
   {
     "id": "8",
     "title": "On Innovative Musicians",
-    "author": "Richard Kostelanetz",
+    "authorId": "3",
     "image": "/image9.webp",
     "description": "Interviews and essays on groundbreaking artists — their voices, their tools, their revolutions in sound and method."
   },
   {
     "id": "9",
     "title": "Words by Memory",
-    "author": "Jalalu-Kalvert Nelson",
+    "authorId": "6",
     "image": "/image10.webp",
     "description": "Poems and reflections from a master of both words and music. Deeply personal, wildly creative, and profoundly musical."
   },
   {
     "id": "10",
     "title": "Compose Your Words",
-    "author": "Leigh Landy",
+    "authorId": "6",
     "image": "/image11.webp",
     "description": "Our voice is the ultimate instrument. This book explores how we use sound, text, and tone to shape meaning and connection."
   },
   {
     "id": "11",
     "title": "Mind Pieces",
-    "author": "Eduardo Reck Miranda",
+    "authorId": "3",
     "image": "/image12.webp",
-    "description": "A glimpse into the future of music technology. This book examines computers, AI, and how they’re reshaping composition and sound."
+    "description": "A glimpse into the future of music technology. This book examines computers, AI, and how they're reshaping composition and sound."
   },
   {
     "id": "12",
     "title": "Text-Sound",
-    "author": "Richard Kostelanetz",
+    "authorId": "3",
     "image": "/image13.webp",
     "description": "Vocal art and poetry in motion. A study of sound-text and the creative blend of word and music in new media."
   },
   {
-  "id": "13",
-  "title": "Voices of Resistance",
-  "author": "Maya Greene",
-  "image": "/image14.webp",
-  "description": "A collection of powerful essays and interviews from artists pushing boundaries and reshaping cultural norms."
+    "id": "13",
+    "title": "Voices of Resistance",
+    "authorId": "1",
+    "image": "/image14.webp",
+    "description": "A collection of powerful essays and interviews from artists pushing boundaries and reshaping cultural norms."
   },
   {
     "id": "14",
     "title": "Echoes of the Future",
-    "author": "Kenji Tanaka",
+    "authorId": "4",
     "image": "/image15.webp",
     "description": "Speculative music writing and experiments in futuristic sonic landscapes. A treat for sci-fi and audio lovers alike."
   },
   {
     "id": "15",
     "title": "The Listening Mind",
-    "author": "Sarah DuPont",
+    "authorId": "5",
     "image": "/image4.webp",
     "description": "What does it mean to listen? This book explores the psychology and philosophy of hearing and understanding through sound."
   },
   {
     "id": "16",
     "title": "Fragments of Noise",
-    "author": "Luis Martínez",
+    "authorId": "6",
     "image": "/image5.webp",
     "description": "An artistic exploration of noise as beauty — fragmented, layered, and intentional in every sense."
   }

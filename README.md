@@ -3,13 +3,12 @@
 
 ## 🌐 Pages Implemented
 
-| Page     | Path         | Description                                  |
-|----------|--------------|----------------------------------------------|
-| Home     | `/`          | Hero carousel + top 8 books list             |
-| Books    | `/books`     | All 16 books rendered with same design       |
-| Profile  | `/profile/:id` | Dynamic routing (currently static dummy)     |
-| Archives | `/archives`  | Placeholder page                             |
-| Contact  | `/contact`   | Placeholder page                             |
+| Page      | URL         | Description                                |
+|-----------|-------------|--------------------------------------------|
+| Home      | `/`         | Hero carousel + 8 featured titles         |
+| Titles    | `/titles`   | All 16 titles rendered with same design   |
+| Authors   | `/authors`  | Grid of all authors with profile links    |
+| Contact   | `/contact`  | Contact form and information              |
 
 ---
 
@@ -20,7 +19,7 @@
 - ✅ Custom font: **Lato**
 - ✅ Book cards loaded from `books.json`
 - ✅ "Read more" linking to `/profile/:id`
-- ✅ View All Books → `/books` page
+- ✅ View All Books → `/titles` page
 - ✅ Logo + Navbar links scroll to top even if on same page
 
 ---
@@ -33,3 +32,5 @@ npm install
 
 # Start local dev server
 npm run dev
+
+```

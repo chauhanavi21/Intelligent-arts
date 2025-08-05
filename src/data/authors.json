@@ -1,0 +1,188 @@
+[
+  {
+    "id": "1",
+    "name": "Joel Chadabe",
+    "image": "/image1.webp",
+    "intro": "Joel Chadabe (1938-2021) was a pioneering composer and electronic music innovator. His work spans decades of musical exploration, from early analog synthesizers to digital composition. He founded the Electronic Music Studio at the State University of New York at Albany and was a key figure in the development of interactive computer music.",
+    "bio": "A visionary in electronic music, Chadabe's contributions to the field are immeasurable. His innovative approaches to composition and performance have influenced generations of musicians and composers.",
+    "titles": ["1", "2"],
+    "specialties": ["Electronic Music", "Interactive Systems"],
+    "sections": [
+      {
+        "id": "biography",
+        "title": "Biography",
+        "content": "Joel Chadabe was born in 1938 and began his musical journey at an early age. He studied composition at Columbia University and later became a professor at the State University of New York at Albany, where he founded the Electronic Music Studio. Throughout his career, he composed over 100 works and was a leading figure in the development of interactive computer music systems."
+      },
+      {
+        "id": "works",
+        "title": "Major Works",
+        "content": "Chadabe's notable works include 'Echoes,' 'Solo,' and 'Rhythms.' His compositions often explored the relationship between human performers and computer systems, creating unique interactive experiences. His book 'Electric Sound: The Past and Promise of Electronic Music' remains a seminal text in the field."
+      },
+      {
+        "id": "influence",
+        "title": "Influence & Legacy",
+        "content": "Chadabe's influence extends beyond his compositions. He was a founding member of the International Computer Music Association and served as its president. His work with real-time interactive systems paved the way for modern electronic music production and performance techniques."
+      },
+      {
+        "id": "publications",
+        "title": "Publications",
+        "content": "In addition to his musical works, Chadabe authored several important books including 'Electric Sound: The Past and Promise of Electronic Music' and numerous articles on electronic music composition and performance. His writings continue to be essential reading for students and practitioners of electronic music."
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Ramón Sender Barayón",
+    "image": "/image2.webp",
+    "intro": "Ramón Sender Barayón is a composer and writer known for his work in experimental music and his powerful memoir about the Spanish Civil War. His work spans both musical composition and literary narrative.",
+    "bio": "A versatile artist whose work bridges music and literature, Barayón's contributions to experimental music and memoir writing have created lasting impact in both fields.",
+    "titles": ["3", "4"],
+    "specialties": ["Experimental Music", "Memoir"],
+    "sections": [
+      {
+        "id": "biography",
+        "title": "Biography",
+        "content": "Ramón Sender Barayón was born in Spain and experienced the Spanish Civil War firsthand. His early experiences shaped his artistic vision, leading him to explore both musical composition and literary expression. His work often reflects themes of memory, conflict, and human resilience."
+      },
+      {
+        "id": "works",
+        "title": "Major Works",
+        "content": "Barayón's notable works include his memoir 'A Death in Zamora' which chronicles his family's experience during the Spanish Civil War, and his experimental musical compositions that explore the intersection of sound and narrative."
+      },
+      {
+        "id": "influence",
+        "title": "Influence & Legacy",
+        "content": "Barayón's work has influenced both the experimental music scene and the genre of memoir writing. His ability to bridge personal narrative with musical composition has inspired many contemporary artists."
+      },
+      {
+        "id": "publications",
+        "title": "Publications",
+        "content": "His publications include 'A Death in Zamora,' a powerful memoir about family and war, and various musical compositions that explore the relationship between sound and storytelling."
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Richard Kostelanetz",
+    "image": "/image3.webp",
+    "intro": "Richard Kostelanetz is a prolific writer and artist known for his innovative approaches to literature and music. His work spans multiple genres and forms, constantly pushing the boundaries of artistic expression.",
+    "bio": "A true polymath, Kostelanetz has created works across literature, music, and visual arts, establishing himself as one of the most innovative artists of his generation.",
+    "titles": ["5", "6", "7", "8"],
+    "specialties": ["Literature", "Experimental Art"],
+    "sections": [
+      {
+        "id": "biography",
+        "title": "Biography",
+        "content": "Richard Kostelanetz has been a leading figure in experimental literature and art for decades. His work encompasses poetry, fiction, criticism, and multimedia art, constantly exploring new forms of expression."
+      },
+      {
+        "id": "works",
+        "title": "Major Works",
+        "content": "Kostelanetz's extensive body of work includes 'John Cage's Greatest Hits,' 'On Innovative Musicians,' and numerous experimental texts and compositions that challenge traditional artistic boundaries."
+      },
+      {
+        "id": "influence",
+        "title": "Influence & Legacy",
+        "content": "Kostelanetz's influence extends across multiple artistic disciplines. His innovative approaches to literature and music have inspired generations of experimental artists and writers."
+      },
+      {
+        "id": "publications",
+        "title": "Publications",
+        "content": "He has authored numerous books including critical studies, experimental texts, and anthologies. His work continues to be essential reading for those interested in avant-garde literature and music."
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Bob Gluck",
+    "image": "/image4.webp",
+    "intro": "Bob Gluck is a composer and educator specializing in electronic music and the intersection of technology and art. His work explores the relationship between human creativity and technological innovation.",
+    "bio": "A pioneer in electronic music education, Gluck's work bridges the gap between traditional composition and cutting-edge technology.",
+    "titles": ["9", "10"],
+    "specialties": ["Electronic Music", "Education"],
+    "sections": [
+      {
+        "id": "biography",
+        "title": "Biography",
+        "content": "Bob Gluck has been at the forefront of electronic music education and composition. His work explores the intersection of technology and human creativity, creating new possibilities for musical expression."
+      },
+      {
+        "id": "works",
+        "title": "Major Works",
+        "content": "Gluck's notable works include 'The Musical World of Paul Winter' and various electronic compositions that explore the relationship between nature, technology, and human experience."
+      },
+      {
+        "id": "influence",
+        "title": "Influence & Legacy",
+        "content": "Gluck's contributions to electronic music education have shaped how technology is integrated into musical composition and performance. His work continues to influence contemporary electronic musicians."
+      },
+      {
+        "id": "publications",
+        "title": "Publications",
+        "content": "His publications include books on electronic music, articles on music technology, and numerous compositions that demonstrate the potential of technology in musical creation."
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Vanessa Tomlinson",
+    "image": "/image5.webp",
+    "intro": "Vanessa Tomlinson is a percussionist and composer exploring new music and collaborative creative practices. Her work focuses on the intersection of performance, composition, and community engagement.",
+    "bio": "A dynamic performer and composer, Tomlinson's work challenges traditional boundaries between performer, composer, and audience.",
+    "titles": ["11"],
+    "specialties": ["Percussion", "New Music"],
+    "sections": [
+      {
+        "id": "biography",
+        "title": "Biography",
+        "content": "Vanessa Tomlinson has established herself as a leading percussionist and composer in contemporary music. Her work emphasizes collaboration and community engagement in musical creation."
+      },
+      {
+        "id": "works",
+        "title": "Major Works",
+        "content": "Tomlinson's notable works include 'Here and Now' with Toby Wren, exploring artistic research and performance practices. Her compositions often involve community participation and site-specific performance."
+      },
+      {
+        "id": "influence",
+        "title": "Influence & Legacy",
+        "content": "Tomlinson's approach to collaborative music-making has influenced how contemporary musicians think about audience engagement and community involvement in performance."
+      },
+      {
+        "id": "publications",
+        "title": "Publications",
+        "content": "Her publications include collaborative works on artistic research and performance, as well as numerous compositions that explore new approaches to percussion and ensemble music."
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "name": "Leigh Landy",
+    "image": "/image6.webp",
+    "intro": "Leigh Landy is a composer and researcher focusing on electroacoustic music and music technology. His work explores the relationship between human voice, technology, and musical expression.",
+    "bio": "A leading figure in electroacoustic music, Landy's research and compositions have advanced our understanding of technology in musical creation.",
+    "titles": ["12", "13"],
+    "specialties": ["Electroacoustic", "Music Technology"],
+    "sections": [
+      {
+        "id": "biography",
+        "title": "Biography",
+        "content": "Leigh Landy has been a prominent figure in electroacoustic music for decades. His work focuses on the human voice as the ultimate instrument and explores how technology can enhance vocal expression."
+      },
+      {
+        "id": "works",
+        "title": "Major Works",
+        "content": "Landy's notable works include 'Compose Your Words' and various electroacoustic compositions that explore the relationship between text, sound, and technology in musical expression."
+      },
+      {
+        "id": "influence",
+        "title": "Influence & Legacy",
+        "content": "Landy's research and compositions have significantly influenced the field of electroacoustic music, particularly in understanding how technology can enhance human vocal expression."
+      },
+      {
+        "id": "publications",
+        "title": "Publications",
+        "content": "His publications include books on electroacoustic music, articles on music technology, and numerous compositions that demonstrate innovative approaches to vocal and electronic music."
+      }
+    ]
+  }
+] 

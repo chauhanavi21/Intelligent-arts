@@ -11,19 +11,19 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-50">
+    <nav className="flex justify-between items-center px-6 py-6 shadow-md bg-white sticky top-0 z-50">
       <Link
         to="/"
         onClick={(e) => scrollToTop(e, '/')}
         className="flex items-center gap-2"
       >
-        <img src="/logo.webp" alt="Logo" className="h-10 w-auto" />
+        <img src="/logo.webp" alt="Logo" className="h-14 w-auto" />
       </Link>
 
-      <div className="flex gap-6 text-sm md:text-base font-medium">
+      <div className="flex gap-6 text-base md:text-lg font-bold">
         <Link to="/" onClick={(e) => scrollToTop(e, '/')}>Home</Link>
-        <Link to="/books" onClick={(e) => scrollToTop(e, '/books')}>Books</Link>
-        <Link to="/archives" onClick={(e) => scrollToTop(e, '/archives')}>Archives</Link>
+        <Link to="/authors" onClick={(e) => scrollToTop(e, '/authors')}>Authors</Link>
+        <Link to="/titles" onClick={(e) => scrollToTop(e, '/titles')}>Titles</Link>
         <Link to="/contact" onClick={(e) => scrollToTop(e, '/contact')}>Contact Us</Link>
       </div>
     </nav>
