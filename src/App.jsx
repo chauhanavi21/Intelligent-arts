@@ -1,5 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -9,6 +11,9 @@ import AuthorProfile from './pages/AuthorProfile';
 import Contact from './pages/Contact';
 import Archives from './pages/Archives';
 import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import UserProfile from './pages/UserProfile';
 import Admin from './pages/Admin';
 import AdminAuthors from './pages/AdminAuthors';
 import AdminTitles from './pages/AdminTitles';
@@ -16,26 +21,53 @@ import AdminBanners from './pages/AdminBanners';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/titles" element={<Books />} />
-        <Route path="/books" element={<Navigate to="/titles" replace />} />
-        <Route path="/authors" element={<Authors />} />
-        <Route path="/authors/:authorId" element={<AuthorProfile />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/archives" element={<Archives />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        
-        {/* Admin Routes */}
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/authors" element={<AdminAuthors />} />
-        <Route path="/admin/titles" element={<AdminTitles />} />
-        <Route path="/admin/banners" element={<AdminBanners />} />
-      </Routes>
-      <Footer />
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/titles" element={<Books />} />
+          <Route path="/books" element={<Navigate to="/titles" replace />} />
+          <Route path="/authors" element={<Authors />} />
+          <Route path="/authors/:authorId" element={<AuthorProfile />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/archives" element={<Archives />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          
+          {/* Auth Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          } />
+          
+          {/* Protected Admin Routes */}
+          <Route path="/admin" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Admin />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/authors" element={
+            <ProtectedRoute requireAdmin={true}>
+              <AdminAuthors />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/titles" element={
+            <ProtectedRoute requireAdmin={true}>
+              <AdminTitles />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/banners" element={
+            <ProtectedRoute requireAdmin={true}>
+              <AdminBanners />
+            </ProtectedRoute>
+          } />
+        </Routes>
+        <Footer />
+      </div>
+    </AuthProvider>
   );
 }
 

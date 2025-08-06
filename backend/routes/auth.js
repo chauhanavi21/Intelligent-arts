@@ -129,4 +129,47 @@ router.get('/profile', auth, async (req, res) => {
   }
 });
 
+// @route   PUT /api/auth/profile
+// @desc    Update author profile
+// @access  Private
+router.put('/profile', [
+  auth,
+  body('name').notEmpty().withMessage('Name is required'),
+  body('intro').notEmpty().withMessage('Intro is required'),
+  body('bio').notEmpty().withMessage('Bio is required')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, intro, bio, specialties } = req.body;
+
+    // Update author profile
+    const author = await Author.findByIdAndUpdate(
+      req.author._id,
+      {
+        name,
+        intro,
+        bio,
+        specialties: specialties || []
+      },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    if (!author) {
+      return res.status(404).json({ message: 'Author not found' });
+    }
+
+    res.json({ 
+      message: 'Profile updated successfully',
+      author: author.toPublicJSON()
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router; 
