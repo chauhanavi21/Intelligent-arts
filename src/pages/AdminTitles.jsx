@@ -21,7 +21,16 @@ const AdminTitles = () => {
     description: '',
     isActive: true,
     isFeatured: false,
-    priority: 0
+    priority: 0,
+    purchaseLinks: [],
+    showPricing: false,
+    isbn: '',
+    pages: '',
+    language: 'English',
+    format: 'hardcover',
+    metaDescription: '',
+    keywords: '',
+    publishDate: ''
   });
 
   // Helper function to format category names
@@ -102,6 +111,14 @@ const AdminTitles = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Prepare data for submission
+      const submitData = {
+        ...formData,
+        keywords: formData.keywords ? formData.keywords.split(',').map(k => k.trim()).filter(k => k) : [],
+        pages: formData.pages ? parseInt(formData.pages) : null,
+        publishDate: formData.publishDate ? new Date(formData.publishDate) : null
+      };
+
       const url = editingTitle 
         ? `http://localhost:3001/api/titles/${editingTitle._id}`
         : 'http://localhost:3001/api/titles';
@@ -113,7 +130,7 @@ const AdminTitles = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(submitData)
       });
 
       if (!response.ok) {
@@ -131,7 +148,15 @@ const AdminTitles = () => {
         description: '',
         isActive: true,
         isFeatured: false,
-        priority: 0
+        priority: 0,
+        purchaseLinks: [],
+        showPricing: false,
+        isbn: '',
+        pages: '',
+        language: 'English',
+        format: 'hardcover',
+        metaDescription: '',
+        keywords: ''
       });
       fetchData();
     } catch (err) {
@@ -150,7 +175,16 @@ const AdminTitles = () => {
       description: title.description,
       isActive: title.isActive,
       isFeatured: title.isFeatured,
-      priority: title.priority || 0
+      priority: title.priority || 0,
+      purchaseLinks: title.purchaseLinks || [],
+      showPricing: title.showPricing || false,
+      isbn: title.isbn || '',
+      pages: title.pages || '',
+      language: title.language || 'English',
+      format: title.format || 'hardcover',
+      metaDescription: title.metaDescription || '',
+      keywords: title.keywords ? title.keywords.join(', ') : '',
+      publishDate: title.publishDate ? new Date(title.publishDate).toISOString().split('T')[0] : ''
     });
     setShowAddForm(true);
   };
@@ -315,6 +349,191 @@ const AdminTitles = () => {
                 />
               </div>
 
+              {/* Book Details Section */}
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">Book Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">ISBN</label>
+                    <input
+                      type="text"
+                      value={formData.isbn}
+                      onChange={(e) => setFormData({...formData, isbn: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="978-0-123456-78-9"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Pages</label>
+                    <input
+                      type="number"
+                      value={formData.pages}
+                      onChange={(e) => setFormData({...formData, pages: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="320"
+                      min="1"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Language</label>
+                    <input
+                      type="text"
+                      value={formData.language}
+                      onChange={(e) => setFormData({...formData, language: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Format</label>
+                    <select
+                      value={formData.format}
+                      onChange={(e) => setFormData({...formData, format: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="hardcover">Hardcover</option>
+                      <option value="paperback">Paperback</option>
+                      <option value="ebook">E-Book</option>
+                      <option value="audiobook">Audiobook</option>
+                      <option value="digital">Digital</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Publish Date</label>
+                    <input
+                      type="date"
+                      value={formData.publishDate ? new Date(formData.publishDate).toISOString().split('T')[0] : ''}
+                      onChange={(e) => setFormData({...formData, publishDate: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* SEO Section */}
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">SEO & Metadata</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
+                    <textarea
+                      value={formData.metaDescription}
+                      onChange={(e) => setFormData({...formData, metaDescription: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      rows="3"
+                      placeholder="Brief description for search engines (150-160 characters)"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Keywords (comma-separated)</label>
+                    <input
+                      type="text"
+                      value={formData.keywords}
+                      onChange={(e) => setFormData({...formData, keywords: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="fiction, mystery, thriller, adventure"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Purchase Links Section */}
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">Purchase Links</h3>
+                <div className="space-y-4">
+                  {formData.purchaseLinks.map((link, index) => (
+                    <div key={index} className="border border-gray-200 rounded-lg p-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Platform</label>
+                          <input
+                            type="text"
+                            value={link.platform}
+                            onChange={(e) => {
+                              const newLinks = [...formData.purchaseLinks];
+                              newLinks[index].platform = e.target.value;
+                              setFormData({...formData, purchaseLinks: newLinks});
+                            }}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Amazon, Barnes & Noble, etc."
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">URL</label>
+                          <input
+                            type="url"
+                            value={link.url}
+                            onChange={(e) => {
+                              const newLinks = [...formData.purchaseLinks];
+                              newLinks[index].url = e.target.value;
+                              setFormData({...formData, purchaseLinks: newLinks});
+                            }}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="https://..."
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Price (optional)</label>
+                          <input
+                            type="text"
+                            value={link.price || ''}
+                            onChange={(e) => {
+                              const newLinks = [...formData.purchaseLinks];
+                              newLinks[index].price = e.target.value;
+                              setFormData({...formData, purchaseLinks: newLinks});
+                            }}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="$24.99"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between mt-3">
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={link.isActive}
+                            onChange={(e) => {
+                              const newLinks = [...formData.purchaseLinks];
+                              newLinks[index].isActive = e.target.checked;
+                              setFormData({...formData, purchaseLinks: newLinks});
+                            }}
+                            className="mr-2"
+                          />
+                          <span className="text-sm text-gray-700">Active</span>
+                        </label>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const newLinks = formData.purchaseLinks.filter((_, i) => i !== index);
+                            setFormData({...formData, purchaseLinks: newLinks});
+                          }}
+                          className="text-red-600 hover:text-red-800 text-sm"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newLinks = [...formData.purchaseLinks, {
+                        platform: '',
+                        url: '',
+                        price: '',
+                        currency: 'USD',
+                        isActive: true
+                      }];
+                      setFormData({...formData, purchaseLinks: newLinks});
+                    }}
+                    className="w-full py-2 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-gray-400 hover:text-gray-700 transition-colors"
+                  >
+                    + Add Purchase Link
+                  </button>
+                </div>
+              </div>
+
               <div className="flex items-center space-x-6">
                 <label className="flex items-center">
                   <input
@@ -333,6 +552,15 @@ const AdminTitles = () => {
                     className="mr-2"
                   />
                   <span className="text-sm font-medium text-gray-700">Featured</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={formData.showPricing}
+                    onChange={(e) => setFormData({...formData, showPricing: e.target.checked})}
+                    className="mr-2"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Show Pricing</span>
                 </label>
               </div>
 

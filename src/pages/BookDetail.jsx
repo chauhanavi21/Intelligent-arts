@@ -147,9 +147,9 @@ const BookDetail = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Left Column - Book Info */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 gap-12">
+          {/* Main Content */}
+          <div>
             {/* Book Header */}
             <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
               <div className="flex flex-col md:flex-row gap-8">
@@ -166,7 +166,19 @@ const BookDetail = () => {
                       {formatCategory(book.category)}
                     </span>
                     <span className="text-gray-500">•</span>
-                    <span className="text-gray-600">Published {new Date(book.createdAt).getFullYear()}</span>
+                    <span className="text-gray-600">Published {new Date(book.publishDate || book.createdAt).getFullYear()}</span>
+                    {book.format && (
+                      <>
+                        <span className="text-gray-500">•</span>
+                        <span className="text-gray-600 capitalize">{book.format}</span>
+                      </>
+                    )}
+                    {book.language && (
+                      <>
+                        <span className="text-gray-500">•</span>
+                        <span className="text-gray-600">{book.language}</span>
+                      </>
+                    )}
                   </div>
                   
                   <h1 className="text-3xl font-bold text-gray-900 mb-2">{book.title}</h1>
@@ -203,7 +215,7 @@ const BookDetail = () => {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="border-b border-gray-200">
                 <nav className="flex">
-                  {['description', 'reviews', 'author', 'details'].map((tab) => (
+                  {['description', 'reviews', 'author', 'details', 'where-to-buy'].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
@@ -213,7 +225,7 @@ const BookDetail = () => {
                           : 'text-gray-500 hover:text-gray-700'
                       }`}
                     >
-                      {tab}
+                      {tab === 'where-to-buy' ? 'Where to Buy' : tab}
                     </button>
                   ))}
                 </nav>
@@ -279,81 +291,72 @@ const BookDetail = () => {
                       </div>
                       <div>
                         <span className="font-medium text-gray-600">Published:</span>
-                        <p className="text-gray-900">{new Date(book.createdAt).toLocaleDateString()}</p>
+                        <p className="text-gray-900">{new Date(book.publishDate || book.createdAt).toLocaleDateString()}</p>
                       </div>
-                      <div>
-                        <span className="font-medium text-gray-600">ISBN:</span>
-                        <p className="text-gray-900">978-0-123456-78-9</p>
-                      </div>
-                      <div>
-                        <span className="font-medium text-gray-600">Pages:</span>
-                        <p className="text-gray-900">320</p>
-                      </div>
+                      {book.isbn && (
+                        <div>
+                          <span className="font-medium text-gray-600">ISBN:</span>
+                          <p className="text-gray-900">{book.isbn}</p>
+                        </div>
+                      )}
+                      {book.pages && (
+                        <div>
+                          <span className="font-medium text-gray-600">Pages:</span>
+                          <p className="text-gray-900">{book.pages}</p>
+                        </div>
+                      )}
+                      {book.language && (
+                        <div>
+                          <span className="font-medium text-gray-600">Language:</span>
+                          <p className="text-gray-900">{book.language}</p>
+                        </div>
+                      )}
+                      {book.format && (
+                        <div>
+                          <span className="font-medium text-gray-600">Format:</span>
+                          <p className="text-gray-900 capitalize">{book.format}</p>
+                        </div>
+                      )}
                     </div>
+                  </div>
+                )}
+                
+                {activeTab === 'where-to-buy' && (
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Where to Buy</h3>
+                    {book.purchaseLinks && book.purchaseLinks.length > 0 ? (
+                      <div className="space-y-4">
+                        {book.purchaseLinks.filter(link => link.isActive).map((link, index) => (
+                          <div key={index} className="border border-gray-200 rounded-lg p-4">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h4 className="font-semibold text-lg">{link.platform}</h4>
+                                {book.showPricing && link.price && (
+                                  <p className="text-lg font-bold text-green-600">{link.price}</p>
+                                )}
+                              </div>
+                              <a
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                              >
+                                Buy Now
+                              </a>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-8">
+                        <p className="text-gray-500">No purchase links available at the moment.</p>
+                        <p className="text-sm text-gray-400 mt-2">Check back later for availability.</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
             </div>
-          </div>
-
-          {/* Right Column - Sidebar */}
-          <div className="space-y-8">
-            {/* Purchase Options */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-lg font-semibold mb-4">Purchase Options</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
-                  <div>
-                    <p className="font-medium">Hardcover</p>
-                    <p className="text-sm text-gray-600">Free shipping</p>
-                  </div>
-                  <span className="text-lg font-bold">$24.99</span>
-                </div>
-                <div className="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
-                  <div>
-                    <p className="font-medium">Paperback</p>
-                    <p className="text-sm text-gray-600">Free shipping</p>
-                  </div>
-                  <span className="text-lg font-bold">$14.99</span>
-                </div>
-                <div className="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
-                  <div>
-                    <p className="font-medium">E-Book</p>
-                    <p className="text-sm text-gray-600">Instant download</p>
-                  </div>
-                  <span className="text-lg font-bold">$9.99</span>
-                </div>
-              </div>
-              <button className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-semibold mt-4">
-                Buy Now
-              </button>
-            </div>
-
-            {/* Related Books */}
-            {relatedBooks.length > 0 && (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h3 className="text-lg font-semibold mb-4">Related Books</h3>
-                <div className="space-y-4">
-                  {relatedBooks.slice(0, 3).map((relatedBook) => (
-                    <Link
-                      key={relatedBook._id}
-                      to={`/book/${relatedBook._id}`}
-                      className="flex gap-3 hover:bg-gray-50 p-2 rounded-lg transition-colors"
-                    >
-                      <img
-                        src={relatedBook.image}
-                        alt={relatedBook.title}
-                        className="w-16 h-20 object-cover rounded"
-                      />
-                      <div>
-                        <h4 className="font-medium text-sm line-clamp-2">{relatedBook.title}</h4>
-                        <p className="text-xs text-gray-600">{relatedBook.authorId?.name}</p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

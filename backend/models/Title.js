@@ -61,7 +61,68 @@ const titleSchema = new mongoose.Schema({
   publishDate: {
     type: Date,
     default: Date.now
-  }
+  },
+  // Purchase links and pricing
+  purchaseLinks: [{
+    platform: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    url: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    price: {
+      type: String,
+      trim: true
+    },
+    currency: {
+      type: String,
+      default: 'USD'
+    },
+    isActive: {
+      type: Boolean,
+      default: true
+    }
+  }],
+  showPricing: {
+    type: Boolean,
+    default: false
+  },
+  // Additional book details
+  isbn: {
+    type: String,
+    trim: true
+  },
+  pages: {
+    type: Number,
+    min: 1
+  },
+  publishDate: {
+    type: Date,
+    default: Date.now
+  },
+  // Book metadata
+  language: {
+    type: String,
+    default: 'English'
+  },
+  format: {
+    type: String,
+    enum: ['hardcover', 'paperback', 'ebook', 'audiobook', 'digital', 'other'],
+    default: 'hardcover'
+  },
+  // SEO and display
+  metaDescription: {
+    type: String,
+    trim: true
+  },
+  keywords: [{
+    type: String,
+    trim: true
+  }]
 }, {
   timestamps: true
 });
