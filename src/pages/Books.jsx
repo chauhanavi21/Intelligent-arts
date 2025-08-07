@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Books = () => {
   const [titles, setTitles] = useState([]);
@@ -100,9 +101,10 @@ const Books = () => {
 
         <div className="grid gap-x-6 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {titles.map((book) => (
-            <div
+            <Link
               key={book._id}
-              className="bg-white shadow-md hover:shadow-lg transition rounded-md overflow-hidden cursor-pointer"
+              to={`/book/${book._id}`}
+              className="bg-white shadow-md hover:shadow-lg transition rounded-md overflow-hidden cursor-pointer block"
             >
               <img
                 src={book.image}
@@ -123,7 +125,7 @@ const Books = () => {
                   {book.description?.slice(0, 90)}...
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

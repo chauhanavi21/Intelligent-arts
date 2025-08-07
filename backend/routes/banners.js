@@ -81,7 +81,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete banner (admin only)
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', adminAuth, async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Invalid banner ID format' });

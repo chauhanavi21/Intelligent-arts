@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
 const AdminTitles = () => {
+  const { token } = useAuth();
   const [titles, setTitles] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -144,7 +146,11 @@ const AdminTitles = () => {
 
     try {
       const response = await fetch(`http://localhost:3001/api/titles/${titleId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
       });
 
       if (!response.ok) {

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const AdminBanners = () => {
+  const { token } = useAuth();
   const [banners, setBanners] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [titles, setTitles] = useState([]);
@@ -161,7 +163,11 @@ const AdminBanners = () => {
 
     try {
       const response = await fetch(`http://localhost:3001/api/banners/${bannerId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
       });
 
       if (!response.ok) {

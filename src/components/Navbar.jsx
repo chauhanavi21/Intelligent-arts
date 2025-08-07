@@ -46,13 +46,13 @@ const Navbar = () => {
                   Admin
                 </Link>
               )}
-              <div className="flex items-center gap-2">
-                <Link
-                  to="/profile"
-                  className="text-base md:text-lg font-bold hover:text-blue-600 transition-colors"
-                >
-                  Profile
-                </Link>
+                             <div className="flex items-center gap-2">
+                 <Link
+                   to={user?.role === 'admin' ? "/admin-profile" : "/profile"}
+                   className="text-base md:text-lg font-bold hover:text-blue-600 transition-colors"
+                 >
+                   {user?.role === 'admin' ? 'Admin Profile' : 'Profile'}
+                 </Link>
                 <button
                   onClick={handleLogout}
                   className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors text-sm"

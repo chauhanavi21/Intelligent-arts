@@ -14,6 +14,8 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserProfile from './pages/UserProfile';
+import AdminProfile from './pages/AdminProfile';
+import BookDetail from './pages/BookDetail';
 import Admin from './pages/Admin';
 import AdminAuthors from './pages/AdminAuthors';
 import AdminTitles from './pages/AdminTitles';
@@ -33,6 +35,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/archives" element={<Archives />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/book/:bookId" element={<BookDetail />} />
           
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />
@@ -40,6 +43,11 @@ function App() {
           <Route path="/profile" element={
             <ProtectedRoute>
               <UserProfile />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin-profile" element={
+            <ProtectedRoute requireAdmin={true}>
+              <AdminProfile />
             </ProtectedRoute>
           } />
           
