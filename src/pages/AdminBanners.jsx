@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import FileUpload from '../components/FileUpload';
 
 const AdminBanners = () => {
   const { token } = useAuth();
@@ -17,6 +18,7 @@ const AdminBanners = () => {
     subtitle: '',
     description: '',
     image: '',
+    imageFile: '',
     buttonText: 'Learn More',
     buttonLink: '',
     contentId: '',
@@ -110,6 +112,7 @@ const AdminBanners = () => {
         subtitle: '',
         description: '',
         image: '',
+        imageFile: '',
         buttonText: 'Learn More',
         buttonLink: '',
         contentId: '',
@@ -139,6 +142,7 @@ const AdminBanners = () => {
       subtitle: banner.subtitle || '',
       description: banner.description || '',
       image: banner.image,
+      imageFile: banner.imageFile || '',
       buttonText: banner.buttonText || 'Learn More',
       buttonLink: banner.buttonLink,
       contentId: banner.contentId || '',
@@ -188,6 +192,18 @@ const AdminBanners = () => {
       'announcement': 'Announcement'
     };
     return typeMap[type] || type;
+  };
+
+  const handleImageUploadSuccess = (path, filename) => {
+    setFormData({
+      ...formData,
+      image: path,
+      imageFile: filename
+    });
+  };
+
+  const handleImageUploadError = (error) => {
+    setError(error);
   };
 
   if (loading) {
@@ -315,14 +331,11 @@ const AdminBanners = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                  <input
-                    type="text"
-                    value={formData.image}
-                    onChange={(e) => setFormData({...formData, image: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required
-                    placeholder="/image1.webp"
+                  <FileUpload
+                    onUploadSuccess={handleImageUploadSuccess}
+                    onUploadError={handleImageUploadError}
+                    currentImage={formData.image}
+                    label="Banner Image"
                   />
                 </div>
                 <div>

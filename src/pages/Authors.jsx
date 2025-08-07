@@ -65,7 +65,7 @@ const Authors = () => {
                 <img
                   src={author.image}
                   alt={author.name}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-contain bg-gray-100"
                 />
               </div>
               <div className="p-6">

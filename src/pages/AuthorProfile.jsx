@@ -111,7 +111,7 @@ const AuthorProfile = () => {
               <img
                 src={author.image}
                 alt={author.name}
-                className="w-80 h-80 object-cover rounded-lg shadow-lg"
+                className="w-80 h-80 object-contain bg-gray-100 rounded-lg shadow-lg"
               />
             </div>
           </div>

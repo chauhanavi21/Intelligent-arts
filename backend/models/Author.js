@@ -23,6 +23,10 @@ const authorSchema = new mongoose.Schema({
     type: String,
     default: '/default-author.webp'
   },
+  imageFile: {
+    type: String, // Store uploaded file path
+    default: null
+  },
   intro: {
     type: String,
     required: true

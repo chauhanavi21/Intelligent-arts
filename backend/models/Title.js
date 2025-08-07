@@ -35,6 +35,10 @@ const titleSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imageFile: {
+    type: String, // Store uploaded file path
+    default: null
+  },
   description: {
     type: String,
     required: true

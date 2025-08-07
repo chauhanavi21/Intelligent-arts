@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import FileUpload from '../components/FileUpload';
 
 const AdminAuthors = () => {
   const { token } = useAuth();
@@ -13,6 +14,7 @@ const AdminAuthors = () => {
     name: '',
     email: '',
     image: '',
+    imageFile: '',
     intro: '',
     bio: '',
     specialties: '',
@@ -37,6 +39,18 @@ const AdminAuthors = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleImageUploadSuccess = (path, filename) => {
+    setFormData({
+      ...formData,
+      image: path,
+      imageFile: filename
+    });
+  };
+
+  const handleImageUploadError = (error) => {
+    setError(error);
   };
 
   const handleSubmit = async (e) => {
@@ -72,6 +86,7 @@ const AdminAuthors = () => {
         name: '',
         email: '',
         image: '',
+        imageFile: '',
         intro: '',
         bio: '',
         specialties: '',
@@ -91,6 +106,7 @@ const AdminAuthors = () => {
       name: author.name,
       email: author.email,
       image: author.image,
+      imageFile: author.imageFile || '',
       intro: author.intro,
       bio: author.bio,
       specialties: author.specialties?.join(', ') || '',
@@ -201,13 +217,11 @@ const AdminAuthors = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                <input
-                  type="text"
-                  value={formData.image}
-                  onChange={(e) => setFormData({...formData, image: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="/image1.webp"
+                <FileUpload
+                  onUploadSuccess={handleImageUploadSuccess}
+                  onUploadError={handleImageUploadError}
+                  currentImage={formData.image}
+                  label="Author Image"
                 />
               </div>
 
@@ -310,7 +324,7 @@ const AdminAuthors = () => {
                         <img
                           src={author.image}
                           alt={author.name}
-                          className="w-10 h-10 rounded-full object-cover"
+                          className="w-10 h-10 rounded-full object-contain bg-gray-100"
                         />
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">{author.name}</div>

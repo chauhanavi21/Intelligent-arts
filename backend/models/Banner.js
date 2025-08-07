@@ -24,6 +24,10 @@ const bannerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imageFile: {
+    type: String, // Store uploaded file path
+    default: null
+  },
   buttonText: {
     type: String,
     default: 'Learn More'
