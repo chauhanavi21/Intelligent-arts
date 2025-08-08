@@ -27,6 +27,10 @@ const authorSchema = new mongoose.Schema({
     type: String, // Store uploaded file path
     default: null
   },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
   intro: {
     type: String,
     required: true

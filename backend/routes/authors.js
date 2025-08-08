@@ -4,8 +4,18 @@ const Author = require('../models/Author');
 const { auth, adminAuth } = require('../middleware/auth');
 const mongoose = require('mongoose');
 
-// Get all authors
+// Get all authors (public: only active)
 router.get('/', async (req, res) => {
+  try {
+    const authors = await Author.find({ isActive: true }).select('-password');
+    res.json(authors);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Admin: get all authors including inactive
+router.get('/all', adminAuth, async (req, res) => {
   try {
     const authors = await Author.find().select('-password');
     res.json(authors);
