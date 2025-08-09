@@ -122,6 +122,29 @@ const titleSchema = new mongoose.Schema({
   keywords: [{
     type: String,
     trim: true
+  }],
+  // Editorial and external reviews
+  reviews: [{
+    quote: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    source: {
+      type: String,
+      trim: true
+    },
+    url: {
+      type: String,
+      trim: true
+    },
+    date: {
+      type: Date
+    },
+    isActive: {
+      type: Boolean,
+      default: true
+    }
   }]
 }, {
   timestamps: true

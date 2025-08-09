@@ -43,6 +43,7 @@ app.use('/api/authors', require('./routes/authors'));
 app.use('/api/titles', require('./routes/titles'));
 app.use('/api/banners', require('./routes/banners'));
 app.use('/api/upload', require('./routes/upload'));
+app.use('/api/exports', require('./routes/exports'));
 // app.use('/api/homepage', require('./routes/homepage'));
 
 // Error handling middleware
