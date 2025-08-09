@@ -91,6 +91,10 @@ const titleSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  showReviewsSection: {
+    type: Boolean,
+    default: true
+  },
   // Additional book details
   isbn: {
     type: String,
