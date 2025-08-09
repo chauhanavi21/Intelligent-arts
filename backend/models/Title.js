@@ -95,6 +95,16 @@ const titleSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  // Optional Read Sample button
+  showSampleButton: {
+    type: Boolean,
+    default: false
+  },
+  sampleUrl: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   // Additional book details
   isbn: {
     type: String,
