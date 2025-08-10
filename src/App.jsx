@@ -10,11 +10,8 @@ import Authors from './pages/Authors';
 import AuthorProfile from './pages/AuthorProfile';
 import Contact from './pages/Contact';
 import Archives from './pages/Archives';
-import Profile from './pages/Profile';
 import Login from './pages/Login';
-import Register from './pages/Register';
-import UserProfile from './pages/UserProfile';
-import AdminProfile from './pages/AdminProfile';
+// Removed AdminProfile
 import BookDetail from './pages/BookDetail';
 import Admin from './pages/Admin';
 import AdminAuthors from './pages/AdminAuthors';
@@ -34,22 +31,13 @@ function App() {
           <Route path="/authors/:authorId" element={<AuthorProfile />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/archives" element={<Archives />} />
-          <Route path="/profile/:id" element={<Profile />} />
+          {/* Profile route removed */}
           <Route path="/book/:bookId" element={<BookDetail />} />
           
           {/* Auth Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <UserProfile />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin-profile" element={
-            <ProtectedRoute requireAdmin={true}>
-              <AdminProfile />
-            </ProtectedRoute>
-          } />
+          <Route path="/admin-login" element={<Login />} />
+          {/* User profile removed */}
+          {/* Admin profile removed */}
           
           {/* Protected Admin Routes */}
           <Route path="/admin" element={

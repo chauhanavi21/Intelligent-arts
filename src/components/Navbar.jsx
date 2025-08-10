@@ -34,50 +34,27 @@ const Navbar = () => {
           <Link to="/contact" onClick={(e) => scrollToTop(e, '/contact')}>Contact Us</Link>
         </div>
 
-        {/* Auth Buttons */}
-        <div className="flex items-center gap-6">
-          {isAuthenticated() ? (
-            <div className="flex items-center gap-6">
-              {user?.role === 'admin' && (
-                <Link
-                  to="/admin"
-                  className="text-base md:text-lg font-bold hover:text-blue-600 transition-colors"
-                >
-                  Admin
-                </Link>
-              )}
-                             <div className="flex items-center gap-2">
-                 <Link
-                   to={user?.role === 'admin' ? "/admin-profile" : "/profile"}
-                   className="text-base md:text-lg font-bold hover:text-blue-600 transition-colors"
-                 >
-                   {user?.role === 'admin' ? 'Admin Profile' : 'Profile'}
-                 </Link>
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors text-sm"
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex gap-6">
+        {/* Auth Controls (no public login/register links) */}
+        {isAuthenticated() && (
+          <div className="flex items-center gap-6">
+            {user?.role === 'admin' && (
               <Link
-                to="/login"
+                to="/admin"
                 className="text-base md:text-lg font-bold hover:text-blue-600 transition-colors"
               >
-                Login
+                Admin
               </Link>
-              <Link
-                to="/register"
-                className="text-base md:text-lg font-bold hover:text-blue-600 transition-colors"
+            )}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors text-sm"
               >
-                Register
-              </Link>
+                Logout
+              </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Welcome Message - Centered */}

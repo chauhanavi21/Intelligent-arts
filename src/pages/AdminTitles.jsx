@@ -24,13 +24,17 @@ const AdminTitles = () => {
     priority: 0,
     purchaseLinks: [],
     showPricing: false,
+    showReviewsSection: true,
+    showSampleButton: false,
+    sampleUrl: '',
     isbn: '',
     pages: '',
     language: 'English',
     format: 'hardcover',
     metaDescription: '',
     keywords: '',
-    publishDate: ''
+    publishDate: '',
+    reviews: []
   });
 
   // Helper function to format category names
@@ -151,12 +155,17 @@ const AdminTitles = () => {
         priority: 0,
         purchaseLinks: [],
         showPricing: false,
+        showReviewsSection: true,
+        showSampleButton: false,
+        sampleUrl: '',
         isbn: '',
         pages: '',
         language: 'English',
         format: 'hardcover',
         metaDescription: '',
-        keywords: ''
+        keywords: '',
+        publishDate: '',
+        reviews: []
       });
       fetchData();
     } catch (err) {
@@ -178,13 +187,17 @@ const AdminTitles = () => {
       priority: title.priority || 0,
       purchaseLinks: title.purchaseLinks || [],
       showPricing: title.showPricing || false,
+      showReviewsSection: title.showReviewsSection !== false,
+      showSampleButton: title.showSampleButton || false,
+      sampleUrl: title.sampleUrl || '',
       isbn: title.isbn || '',
       pages: title.pages || '',
       language: title.language || 'English',
       format: title.format || 'hardcover',
       metaDescription: title.metaDescription || '',
       keywords: title.keywords ? title.keywords.join(', ') : '',
-      publishDate: title.publishDate ? new Date(title.publishDate).toISOString().split('T')[0] : ''
+      publishDate: title.publishDate ? new Date(title.publishDate).toISOString().split('T')[0] : '',
+      reviews: title.reviews || []
     });
     setShowAddForm(true);
   };
@@ -408,6 +421,29 @@ const AdminTitles = () => {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
+                  <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={formData.showSampleButton}
+                        onChange={(e) => setFormData({ ...formData, showSampleButton: e.target.checked })}
+                        className="mr-2"
+                      />
+                      <span className="text-sm font-medium text-gray-700">Show "Read Sample" Button</span>
+                    </label>
+                    {formData.showSampleButton && (
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Sample URL</label>
+                        <input
+                          type="url"
+                          value={formData.sampleUrl}
+                          onChange={(e) => setFormData({ ...formData, sampleUrl: e.target.value })}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="https://..."
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -438,6 +474,105 @@ const AdminTitles = () => {
                 </div>
               </div>
 
+              {/* Reviews Section */}
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">Reviews</h3>
+                <div className="space-y-4">
+                  {formData.reviews.map((rev, index) => (
+                    <div key={index} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Quote</label>
+                        <textarea
+                          value={rev.quote}
+                          onChange={(e) => {
+                            const reviews = [...formData.reviews];
+                            reviews[index].quote = e.target.value;
+                            setFormData({ ...formData, reviews });
+                          }}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          rows="3"
+                          placeholder="Paste a short excerpt from the review"
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Source</label>
+                          <input
+                            type="text"
+                            value={rev.source || ''}
+                            onChange={(e) => {
+                              const reviews = [...formData.reviews];
+                              reviews[index].source = e.target.value;
+                              setFormData({ ...formData, reviews });
+                            }}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Magazine, Journal, Blog"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">URL</label>
+                          <input
+                            type="url"
+                            value={rev.url || ''}
+                            onChange={(e) => {
+                              const reviews = [...formData.reviews];
+                              reviews[index].url = e.target.value;
+                              setFormData({ ...formData, reviews });
+                            }}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="https://..."
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                          <input
+                            type="date"
+                            value={rev.date ? new Date(rev.date).toISOString().split('T')[0] : ''}
+                            onChange={(e) => {
+                              const reviews = [...formData.reviews];
+                              reviews[index].date = e.target.value;
+                              setFormData({ ...formData, reviews });
+                            }}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={rev.isActive !== false}
+                            onChange={(e) => {
+                              const reviews = [...formData.reviews];
+                              reviews[index].isActive = e.target.checked;
+                              setFormData({ ...formData, reviews });
+                            }}
+                            className="mr-2"
+                          />
+                          <span className="text-sm text-gray-700">Active</span>
+                        </label>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const reviews = formData.reviews.filter((_, i) => i !== index);
+                            setFormData({ ...formData, reviews });
+                          }}
+                          className="text-red-600 hover:text-red-800 text-sm"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, reviews: [...formData.reviews, { quote: '', source: '', url: '', date: '', isActive: true }] })}
+                    className="w-full py-2 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-gray-400 hover:text-gray-700 transition-colors"
+                  >
+                    + Add Review
+                  </button>
+                </div>
+              </div>
               {/* Purchase Links Section */}
               <div className="border-t pt-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">Purchase Links</h3>
@@ -561,6 +696,15 @@ const AdminTitles = () => {
                     className="mr-2"
                   />
                   <span className="text-sm font-medium text-gray-700">Show Pricing</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={formData.showReviewsSection}
+                    onChange={(e) => setFormData({...formData, showReviewsSection: e.target.checked})}
+                    className="mr-2"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Show Reviews</span>
                 </label>
               </div>
 

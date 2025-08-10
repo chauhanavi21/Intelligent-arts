@@ -15,6 +15,7 @@ const AdminAuthors = () => {
     email: '',
     image: '',
     imageFile: '',
+    isActive: true,
     intro: '',
     bio: '',
     specialties: '',
@@ -28,7 +29,11 @@ const AdminAuthors = () => {
 
   const fetchAuthors = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/authors');
+      const response = await fetch('http://localhost:3001/api/authors/all', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (!response.ok) {
         throw new Error('Failed to fetch authors');
       }
@@ -87,6 +92,7 @@ const AdminAuthors = () => {
         email: '',
         image: '',
         imageFile: '',
+        isActive: true,
         intro: '',
         bio: '',
         specialties: '',
@@ -107,6 +113,7 @@ const AdminAuthors = () => {
       email: author.email,
       image: author.image,
       imageFile: author.imageFile || '',
+      isActive: author.isActive !== false,
       intro: author.intro,
       bio: author.bio,
       specialties: author.specialties?.join(', ') || '',
@@ -256,7 +263,7 @@ const AdminAuthors = () => {
                 />
               </div>
 
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-6">
                 <label className="flex items-center">
                   <input
                     type="checkbox"
@@ -265,6 +272,15 @@ const AdminAuthors = () => {
                     className="mr-2"
                   />
                   <span className="text-sm font-medium text-gray-700">Featured Author</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={formData.isActive}
+                    onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
+                    className="mr-2"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Visible on Site</span>
                 </label>
               </div>
 
@@ -284,6 +300,8 @@ const AdminAuthors = () => {
                       name: '',
                       email: '',
                       image: '',
+                      imageFile: '',
+                      isActive: true,
                       intro: '',
                       bio: '',
                       specialties: '',

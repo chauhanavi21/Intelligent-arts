@@ -145,10 +145,9 @@ const BookDetail = () => {
         </Swiper>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 gap-12">
-          {/* Main Content */}
+      {/* Main Content (single flow, no tabs) */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="space-y-10">
           <div>
             {/* Book Header */}
             <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
@@ -184,178 +183,139 @@ const BookDetail = () => {
                   <h1 className="text-3xl font-bold text-gray-900 mb-2">{book.title}</h1>
                   <p className="text-xl text-gray-600 mb-4">by {book.authorId?.name || 'Unknown Author'}</p>
                   
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="flex items-center">
-                      <div className="flex text-yellow-400">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                          </svg>
-                        ))}
-                      </div>
-                      <span className="ml-2 text-gray-600">(4.5/5)</span>
-                    </div>
-                    <span className="text-gray-500">•</span>
-                    <span className="text-gray-600">128 reviews</span>
-                  </div>
+                  {/* Ratings removed as per requirement */}
 
-                  <div className="space-y-4">
-                    <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
-                      Read Sample
-                    </button>
-                    <button className="w-full bg-gray-100 text-gray-800 py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
-                      Add to Wishlist
-                    </button>
-                  </div>
+                  {book.showSampleButton && book.sampleUrl && (
+                    <div className="space-y-4">
+                      <a
+                        href={book.sampleUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-center w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                      >
+                        Read Sample
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Tabs Section */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="border-b border-gray-200">
-                <nav className="flex">
-                  {['description', 'reviews', 'author', 'details', 'where-to-buy'].map((tab) => (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveTab(tab)}
-                      className={`px-6 py-4 text-sm font-medium capitalize ${
-                        activeTab === tab
-                          ? 'border-b-2 border-blue-600 text-blue-600'
-                          : 'text-gray-500 hover:text-gray-700'
-                      }`}
-                    >
-                      {tab === 'where-to-buy' ? 'Where to Buy' : tab}
-                    </button>
-                  ))}
-                </nav>
-              </div>
-              
-              <div className="p-8">
-                {activeTab === 'description' && (
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">About this book</h3>
-                    <p className="text-gray-700 leading-relaxed">{book.description}</p>
-                  </div>
+            {/* Flow sections */}
+            <div className="bg-white rounded-lg shadow-lg p-8 space-y-10">
+              {/* Description with author link */}
+              <section>
+                <h3 className="text-xl font-semibold mb-4">About this book</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">{book.description}</p>
+                {book.authorId && (
+                  <p className="text-sm text-gray-700">
+                    By{' '}
+                    <a href={`/authors/${book.authorId._id || book.authorId}`} className="text-blue-600 hover:text-blue-800">
+                      {book.authorId.name || 'Author'}
+                    </a>
+                  </p>
                 )}
-                
-                {activeTab === 'reviews' && (
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Customer Reviews</h3>
-                    <div className="space-y-4">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="border-b border-gray-200 pb-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="flex text-yellow-400">
-                              {[...Array(5)].map((_, j) => (
-                                <svg key={j} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                </svg>
-                              ))}
-                            </div>
-                            <span className="font-medium">John Doe</span>
-                            <span className="text-gray-500">• 2 days ago</span>
+              </section>
+
+              {/* Reviews (optional) */}
+              {book.showReviewsSection !== false && (
+                <section>
+                  <h3 className="text-xl font-semibold mb-4">Reviews</h3>
+                  {book.reviews && book.reviews.filter(r => r.isActive !== false).length > 0 ? (
+                    <div className="space-y-6">
+                      {book.reviews.filter(r => r.isActive !== false).map((rev, idx) => (
+                        <div key={idx} className="border-b border-gray-200 pb-4">
+                          <blockquote className="text-gray-800 italic">“{rev.quote}”</blockquote>
+                          <div className="mt-2 text-sm text-gray-600 flex items-center gap-2">
+                            {rev.source && <span>— {rev.source}</span>}
+                            {rev.date && <span>• {new Date(rev.date).toLocaleDateString()}</span>}
+                            {rev.url && (
+                              <a href={rev.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                                Read more
+                              </a>
+                            )}
                           </div>
-                          <p className="text-gray-700">Great book! Highly recommended for anyone interested in this topic.</p>
                         </div>
                       ))}
                     </div>
-                  </div>
-                )}
-                
-                {activeTab === 'author' && (
+                  ) : (
+                    <p className="text-gray-600">No reviews yet.</p>
+                  )}
+                </section>
+              )}
+
+              {/* Details */}
+              <section>
+                <h3 className="text-xl font-semibold mb-4">Details</h3>
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">About the Author</h3>
-                    <div className="flex items-start gap-4">
-                      <img
-                        src={book.authorId?.image || '/default-author.webp'}
-                        alt={book.authorId?.name}
-                        className="w-20 h-20 rounded-full object-cover"
-                      />
-                      <div>
-                        <h4 className="font-semibold text-lg">{book.authorId?.name}</h4>
-                        <p className="text-gray-600 mb-2">{book.authorId?.intro}</p>
-                        <p className="text-gray-700">{book.authorId?.bio}</p>
-                      </div>
+                    <span className="font-medium text-gray-600">Category:</span>
+                    <p className="text-gray-900">{formatCategory(book.category)}</p>
+                  </div>
+                  <div>
+                    <span className="font-medium text-gray-600">Published:</span>
+                    <p className="text-gray-900">{new Date(book.publishDate || book.createdAt).toLocaleDateString()}</p>
+                  </div>
+                  {book.isbn && (
+                    <div>
+                      <span className="font-medium text-gray-600">ISBN:</span>
+                      <p className="text-gray-900">{book.isbn}</p>
                     </div>
-                  </div>
-                )}
-                
-                {activeTab === 'details' && (
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Book Details</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <span className="font-medium text-gray-600">Category:</span>
-                        <p className="text-gray-900">{formatCategory(book.category)}</p>
-                      </div>
-                      <div>
-                        <span className="font-medium text-gray-600">Published:</span>
-                        <p className="text-gray-900">{new Date(book.publishDate || book.createdAt).toLocaleDateString()}</p>
-                      </div>
-                      {book.isbn && (
-                        <div>
-                          <span className="font-medium text-gray-600">ISBN:</span>
-                          <p className="text-gray-900">{book.isbn}</p>
-                        </div>
-                      )}
-                      {book.pages && (
-                        <div>
-                          <span className="font-medium text-gray-600">Pages:</span>
-                          <p className="text-gray-900">{book.pages}</p>
-                        </div>
-                      )}
-                      {book.language && (
-                        <div>
-                          <span className="font-medium text-gray-600">Language:</span>
-                          <p className="text-gray-900">{book.language}</p>
-                        </div>
-                      )}
-                      {book.format && (
-                        <div>
-                          <span className="font-medium text-gray-600">Format:</span>
-                          <p className="text-gray-900 capitalize">{book.format}</p>
-                        </div>
-                      )}
+                  )}
+                  {book.pages && (
+                    <div>
+                      <span className="font-medium text-gray-600">Pages:</span>
+                      <p className="text-gray-900">{book.pages}</p>
                     </div>
-                  </div>
-                )}
-                
-                {activeTab === 'where-to-buy' && (
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Where to Buy</h3>
-                    {book.purchaseLinks && book.purchaseLinks.length > 0 ? (
-                      <div className="space-y-4">
-                        {book.purchaseLinks.filter(link => link.isActive).map((link, index) => (
-                          <div key={index} className="border border-gray-200 rounded-lg p-4">
-                            <div className="flex items-center justify-between">
-                              <div>
-                                <h4 className="font-semibold text-lg">{link.platform}</h4>
-                                {book.showPricing && link.price && (
-                                  <p className="text-lg font-bold text-green-600">{link.price}</p>
-                                )}
-                              </div>
-                              <a
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-                              >
-                                Buy Now
-                              </a>
-                            </div>
+                  )}
+                  {book.language && (
+                    <div>
+                      <span className="font-medium text-gray-600">Language:</span>
+                      <p className="text-gray-900">{book.language}</p>
+                    </div>
+                  )}
+                  {book.format && (
+                    <div>
+                      <span className="font-medium text-gray-600">Format:</span>
+                      <p className="text-gray-900 capitalize">{book.format}</p>
+                    </div>
+                  )}
+                </div>
+              </section>
+
+              {/* Where to Buy */}
+              <section>
+                <h3 className="text-xl font-semibold mb-4">Where to Buy</h3>
+                {book.purchaseLinks && book.purchaseLinks.length > 0 ? (
+                  <div className="space-y-4">
+                    {book.purchaseLinks.filter(link => link.isActive).map((link, index) => (
+                      <div key={index} className="border border-gray-200 rounded-lg p-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-semibold text-lg">{link.platform}</h4>
+                            {book.showPricing && link.price && (
+                              <p className="text-lg font-bold text-green-600">{link.price}</p>
+                            )}
                           </div>
-                        ))}
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                          >
+                            Buy Now
+                          </a>
+                        </div>
                       </div>
-                    ) : (
-                      <div className="text-center py-8">
-                        <p className="text-gray-500">No purchase links available at the moment.</p>
-                        <p className="text-sm text-gray-400 mt-2">Check back later for availability.</p>
-                      </div>
-                    )}
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-gray-500">No purchase links available at the moment.</p>
+                    <p className="text-sm text-gray-400 mt-2">Check back later for availability.</p>
                   </div>
                 )}
-              </div>
+              </section>
             </div>
           </div>
         </div>
