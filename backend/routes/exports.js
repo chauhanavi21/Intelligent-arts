@@ -89,7 +89,7 @@ module.exports = router;
 // GET /api/exports/authors-with-titles?format=json|csv
 router.get('/authors-with-titles', adminAuth, async (req, res) => {
   try {
-    const { format = 'json' } = req.query;
+    const { format = 'json', includeInactive = 'true' } = req.query;
     // Load authors and titles once, then join in-memory
     const [authors, titles] = await Promise.all([
       Author.find().select('-password').lean(),
@@ -98,7 +98,8 @@ router.get('/authors-with-titles', adminAuth, async (req, res) => {
 
     const authorIdToTitles = new Map();
     for (const t of titles) {
-      const key = String(t.authorId);
+      if (includeInactive !== 'true' && t.isActive === false) continue;
+      const key = (t.authorId && typeof t.authorId.toString === 'function') ? t.authorId.toString() : String(t.authorId);
       if (!authorIdToTitles.has(key)) authorIdToTitles.set(key, []);
       authorIdToTitles.get(key).push({
         titleId: t._id,
@@ -116,7 +117,7 @@ router.get('/authors-with-titles', adminAuth, async (req, res) => {
         email: a.email,
         isActive: a.isActive !== false,
         isFeatured: !!a.isFeatured,
-        titles: authorIdToTitles.get(String(a._id)) || []
+        titles: authorIdToTitles.get((a._id && typeof a._id.toString === 'function') ? a._id.toString() : String(a._id)) || []
       }));
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Content-Disposition', 'attachment; filename="authors_with_titles.json"');
@@ -127,7 +128,8 @@ router.get('/authors-with-titles', adminAuth, async (req, res) => {
     const headers = ['authorId', 'authorName', 'authorEmail', 'authorIsActive', 'titleId', 'title', 'category', 'titleIsActive', 'publishDate'];
     const rows = [];
     for (const a of authors) {
-      const at = authorIdToTitles.get(String(a._id)) || [];
+      const aKey = (a._id && typeof a._id.toString === 'function') ? a._id.toString() : String(a._id);
+      const at = authorIdToTitles.get(aKey) || [];
       if (at.length === 0) {
         rows.push({
           authorId: a._id,
