@@ -31,10 +31,11 @@ const FileUpload = ({
     setUploading(true);
 
     try {
+      const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await fetch('http://localhost:3001/api/upload/image', {
+      const response = await fetch(`${API_BASE_URL}/upload/image`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -12,14 +12,16 @@ const Admin = () => {
   });
   const [loading, setLoading] = useState(true);
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const [authorsRes, titlesRes] = await Promise.all([
-          fetch('http://localhost:3001/api/authors/all', {
+          fetch(`${API_BASE_URL}/authors/all`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          fetch('http://localhost:3001/api/titles')
+          fetch(`${API_BASE_URL}/titles`)
         ]);
 
         const authors = await authorsRes.json();
@@ -41,7 +43,7 @@ const Admin = () => {
     fetchStats();
   }, []);
 
-  const API_BASE = 'http://localhost:3001/api';
+  const API_BASE = API_BASE_URL;
 
   const downloadCsv = async (path, filename) => {
     try {

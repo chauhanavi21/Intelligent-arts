@@ -23,13 +23,16 @@ const AdminAuthors = () => {
     role: 'author'
   });
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+
   useEffect(() => {
+    if (!token) return; // wait for token before fetching admin endpoint
     fetchAuthors();
-  }, []);
+  }, [token]);
 
   const fetchAuthors = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/authors/all', {
+      const response = await fetch(`${API_BASE_URL}/authors/all`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -67,8 +70,8 @@ const AdminAuthors = () => {
       };
 
       const url = editingAuthor 
-        ? `http://localhost:3001/api/authors/${editingAuthor._id}`
-        : 'http://localhost:3001/api/authors';
+        ? `${API_BASE_URL}/authors/${editingAuthor._id}`
+        : `${API_BASE_URL}/authors`;
       
       const method = editingAuthor ? 'PUT' : 'POST';
 
@@ -76,6 +79,7 @@ const AdminAuthors = () => {
         method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(authorData)
       });
@@ -129,7 +133,7 @@ const AdminAuthors = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/authors/${authorId}`, {
+      const response = await fetch(`${API_BASE_URL}/authors/${authorId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
